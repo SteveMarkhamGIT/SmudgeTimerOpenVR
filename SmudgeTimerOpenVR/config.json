@@ -1,0 +1,14 @@
+{
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ],
+  "RefreshRate": 20,
+  "GhostSpeed": 100,
+  "TriggerDistance": "0.1mm",
+  "TimerSize": "10.0mm"
+}
