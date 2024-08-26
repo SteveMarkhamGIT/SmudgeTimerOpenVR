@@ -92,6 +92,12 @@ exit   --termintaes this program
 									case "size":
 											opts.TimerSize = valuePart; 
 										break;
+									case "debugmode":
+										if(valuePart=="true")
+											opts.DebugMode = true;
+										else
+											opts.DebugMode = false;
+										break;
 								}
 							}
 						}
@@ -128,6 +134,7 @@ exit   --termintaes this program
 				ovr.GhostSpeedPct = opts.GhostSpeed;
 				ovr.TriggerDistance = opts.triggerDistance;
 				ovr.WidthInMeters = opts.timerSize;
+				ovr.DebugMode = opts.DebugMode;
 				opts.IsChanged = false;
 			}
 			else if (!refreshing)
@@ -144,6 +151,7 @@ exit   --termintaes this program
 				ovr.GhostSpeedPct = opts.GhostSpeed;
 				ovr.TriggerDistance = opts.triggerDistance;
 				ovr.WidthInMeters = opts.timerSize;
+				ovr.DebugMode = opts.DebugMode;
 				opts.IsChanged = false;
 			}
 			

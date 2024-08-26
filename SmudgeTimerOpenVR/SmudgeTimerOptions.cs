@@ -42,8 +42,9 @@ namespace SmudgeTimerOpenVR
 				timerSize = (v ?? 10f) / 100f; 
 			} 
 		}
-		
-		
+
+		private bool debugMode = false;
+		public bool DebugMode { get => debugMode; set { debugMode = value; IsChanged = true; } }
 
 
 

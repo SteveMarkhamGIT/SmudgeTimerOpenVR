@@ -42,7 +42,9 @@ namespace SmudgeTimerOpenVR
 
 		private double ghostSpeed = 1.7;
 		private double ghostSpeedPct = 100;
-		
+		private const float lockoutMS = 500f;
+		private DateTime inputLockoutUntil = DateTime.MinValue;
+
 		public double GhostSpeedPct 
 		{
 			get
@@ -61,6 +63,7 @@ namespace SmudgeTimerOpenVR
 		SmudgeTimerHost h = new SmudgeTimerHost(Utils.GetResourcePath());
 		private OpenGLCompositor _instance;
 		private uint textureHandle;
+		private bool debugMode = false;
 
 		public SmudgeTimerOverlay(string key, string name, CVRSystem sys, OpenGLCompositor instance)
 		{
@@ -260,7 +263,7 @@ namespace SmudgeTimerOpenVR
 			set => hmdIndex = value;
 		}
 
-		
+		public bool DebugMode { get => debugMode; set => debugMode = value; }
 
 		private void InitTrackedDevice()
 		{
@@ -298,32 +301,37 @@ namespace SmudgeTimerOpenVR
 		}
 		private void UpdatePoses()
 		{
-
-
-			TrackedDevicePose_t[] poses = new TrackedDevicePose_t[16];
-			//GetRawTrackedDevicePoses
-			UpdateTracking(poses);
-
-			var lpose = poses[LIndex.GetValueOrDefault(2)];
-			var rpose = poses[RIndex.GetValueOrDefault(3)];
-			float dist = GetDistance(lpose, rpose);
-			var l1 = lpose.mDeviceToAbsoluteTracking;
-			var r1 = rpose.mDeviceToAbsoluteTracking;
-
-
-			ControllersTouching = dist < TriggerDistance;
-			if (ControllersTouching && !ControllersWereTouching)
+			if (inputLockoutUntil < DateTime.Now)
 			{
-				Console.WriteLine($"controllers now touching: {dist}");
-				ControllersWereTouching = true;
-				StartStop();
 
-			}
-			else if (!ControllersTouching && ControllersWereTouching)
-			{
-				Console.WriteLine($"controllers no longer touching: {dist}");
-				ControllersWereTouching = false;
-				//StartStop();
+				TrackedDevicePose_t[] poses = new TrackedDevicePose_t[16];
+				//GetRawTrackedDevicePoses
+				UpdateTracking(poses);
+
+				var lpose = poses[LIndex.GetValueOrDefault(2)];
+				var rpose = poses[RIndex.GetValueOrDefault(3)];
+				float dist = GetDistance(lpose, rpose);
+				var l1 = lpose.mDeviceToAbsoluteTracking;
+				var r1 = rpose.mDeviceToAbsoluteTracking;
+
+
+				ControllersTouching = dist < TriggerDistance;
+				if (ControllersTouching && !ControllersWereTouching)
+				{
+					if(DebugMode)	
+						Console.WriteLine($"controllers now touching: {dist}");
+					ControllersWereTouching = true;
+					inputLockoutUntil = DateTime.Now.AddMilliseconds(lockoutMS);  //prevents repeated start/stops when controllers are held close to trigger distance
+					StartStop();
+
+				}
+				else if (!ControllersTouching && ControllersWereTouching)
+				{
+					if (DebugMode)
+						Console.WriteLine($"controllers no longer touching: {dist}");
+					ControllersWereTouching = false;
+					//StartStop();
+				}
 			}
 
 		}
@@ -345,7 +353,7 @@ namespace SmudgeTimerOpenVR
 			var r44 = r1.ToMatrix4x4();
 			var ladjusted = l44.Translation + (new System.Numerics.Vector3(0.08f, -0.12f, -0.2f));
 			//var res = l44 - r44;
-			//Matrix4x4.DeKKKKKKKKKKse(l44, out var lscale, out var lrot, out var ltrans);
+			//Matrix4x4.DeKse(l44, out var lscale, out var lrot, out var ltrans);
 			//Matrix4x4.DeKse(r44, out var rscale, out var rrot, out var rtrans);
 			//var dist = System.Numerics.Vector3.Distance(ltrans, rtrans);
 			//var dist = (ladjusted - r44.Translation).LengthSquared();
