@@ -14,7 +14,11 @@ namespace SmudgeTimerOpenVR
 	{
 		public static string GetResourcePath()
 		{
-			var dir = Path.Combine( Directory.GetCurrentDirectory(),@"..\..\..\Resources");
+#if DEBUG
+			var dir = Path.Combine(Directory.GetCurrentDirectory(),@"..\..\..\Resources");
+#else
+			var dir = Path.Combine(Directory.GetCurrentDirectory(), @".\Resources");
+#endif
 			return dir;
 
 		}

@@ -6,7 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ApplicationIcon>SmudgeTimerOpenVR.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="SmudgeTimerOpenVR.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Resources\lib\" />
