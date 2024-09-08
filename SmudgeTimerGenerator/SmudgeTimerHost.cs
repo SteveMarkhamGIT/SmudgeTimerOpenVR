@@ -56,7 +56,7 @@ namespace SmudgeTimerGenerator
 			{
 				if (value < 50 || value > 200)
 					throw new ArgumentOutOfRangeException(nameof(GhostSpeedPct), "Value must be between 50 and 200");
-				MSPerStep = BaseMSPerStep * (value / 100d);
+				MSPerStep = BaseMSPerStep * (100d / value);
 			}
 		}
 
