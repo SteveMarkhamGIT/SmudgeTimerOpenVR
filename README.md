@@ -1,6 +1,6 @@
 The compiled file can be found here:
 
-https://drive.google.com/file/d/1dH8NNqUIV1IVw86MxSf8ovK-BeaLzLJH/view?usp=drive_link
+https://drive.google.com/file/d/1KN28NEXOKFJNNM8rTzW9wDZZH4RY8tG3/view?usp=sharing
 
 Download the zip.
 Create a directory, such as C:\games\SmudgeTimer
