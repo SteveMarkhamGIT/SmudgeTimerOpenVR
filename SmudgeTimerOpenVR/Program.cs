@@ -24,11 +24,12 @@ Spirits take the full 3:00 after being smudged.
 The footprints measure out how fast a standard ghost moves when it doesn't have a target (1.7 m/s).
 The config.json file can be edited to store your preferences.
 
-Commands and their defaults:
-GhostSpeed=100  --affects the footprint speed
-TimerSize=10mm  --changes the size of the ui
-TriggerDistance=0.4mm  --chages how close your controllers need to be to start/stop the timer
-exit   --termintaes this program
+Commands and their default values:
+GhostSpeed=100			--affects the footprint speed
+gs=100					--same thing
+TimerSize=10mm			--changes the size of the ui
+TriggerDistance=0.4mm	--chages how close your controllers need to be to start/stop the timer
+exit					--terminates this program
 
 ");
 			var builder = new ConfigurationBuilder()
