@@ -7,7 +7,7 @@ Run the msi file.  Note the shortcuts created on your desktop and start menu.  A
 or
 
 Windows 10+ Zip file<br/>
-https://drive.google.com/file/d/1KN28NEXOKFJNNM8rTzW9wDZZH4RY8tG3/view?usp=sharing <br/>
+[Zip File manual install](https://drive.google.com/file/d/1Rhvs4aF1BtwScKMHcg-DH7vAqxvWuRV-/view?usp=drive_link) <br/>
 Download the zip.<br/>
 Create a directory, such as C:\games\SmudgeTimer<br/>
 Paste the contents of the zip file into this directory.<br/>
