@@ -1,7 +1,7 @@
 The compiled file can be found here:
 
-Windows 10+ setup MSI<br/>
-https://drive.google.com/file/d/1ZjAkYVETm9aQqaeyYeTk2_M0LXIln4Ig/view?usp=drive_link <br/>
+Windows 10+ Smudge timer installer<br/>
+[Smudge Timer MSI](https://drive.google.com/file/d/1QC30jLPU_ShY3IkYH_PsymjXrni6AM1S/view?usp=drive_link) <br/>
 Run the msi file.  Note the shortcuts created on your desktop and start menu.  Any time SteamVR is running, click on one of these shortcuts to start the smudge timer overlay.
 
 or
